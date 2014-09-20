@@ -1,11 +1,10 @@
 package com.parsers;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.log4j.Logger;
 
-import javax.xml.XMLConstants;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import javax.xml.validation.SchemaFactory;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.List;
@@ -39,8 +38,9 @@ public class MainTest {
     void testSaxParser() {
         LOGGER.info("Using SAX Parser:\n-----------------");
         try {
-            SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-//            Schema schema = schemaFactory.newSchema(new File(OLD_EMPLOYEE_XSD.getFilename())); // create new xml schema
+            /*SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+            Schema schema = schemaFactory.newSchema(new File(OLD_EMPLOYEE_XSD.getFilename()));
+            // create new xml schema*/
             SAXParserFactory factory = SAXParserFactory.newInstance();
 //            factory.setSchema(schema);                                  // set schema to the schemaFactory
 
@@ -51,7 +51,7 @@ public class MainTest {
             saxParser.parse(xmlInput, handler);
 
             for (Employee emp : handler.employees) {
-                LOGGER.info(emp);
+                LOGGER.info(ToStringBuilder.reflectionToString(emp/*, ToStringStyle.MULTI_LINE_STYLE*/));
             }
         } catch (Throwable e) {
             e.printStackTrace();
@@ -64,7 +64,7 @@ public class MainTest {
             StaxXmlParser staxXmlParser = new StaxXmlParser(EMPLOYEE_XML.getFilename());
             List<Employee> employees = staxXmlParser.parseEmployee();
             for (Employee emp : employees) {
-                LOGGER.info(emp);
+                ToStringBuilder.reflectionToString(emp);
             }
         } catch (Throwable e) {
             e.printStackTrace();
@@ -77,7 +77,7 @@ public class MainTest {
 
         List<Employee> employees = domXmlParser.parseFromXmlToEmployee();
         for (Employee employee : employees) {
-            LOGGER.info(employee);
+            ToStringBuilder.reflectionToString(employee);
         }
     }
 }

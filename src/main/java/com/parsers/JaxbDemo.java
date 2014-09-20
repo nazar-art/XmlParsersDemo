@@ -1,7 +1,7 @@
 package com.parsers;
 
 import com.generated.Staff;
-import com.reflection.ObjectAnalyzer;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.log4j.Logger;
 
 import javax.xml.bind.JAXBContext;
@@ -9,10 +9,6 @@ import javax.xml.bind.Unmarshaller;
 import java.io.File;
 import java.io.FileInputStream;
 
-/**
- * @author nlelyak
- * @version 1.00 2014-01-30
- */
 public class JaxbDemo {
 
     private static final Logger LOGGER = Logger.getLogger(JaxbDemo.class);
@@ -31,7 +27,7 @@ public class JaxbDemo {
             // print employee list
             for (Staff.Employee emp : staff.getEmployee()) {
 //                System.out.println(new ObjectAnalyzer().toString(emp));
-                LOGGER.info(new ObjectAnalyzer().toString(emp));
+                LOGGER.info(ToStringBuilder.reflectionToString(emp));
             }
 
             long elapsedTime = System.currentTimeMillis() - startTime;

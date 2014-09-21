@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <staff xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:noNamespaceSchemaLocation="oldEmployee.xsd">
+       xsi:noNamespaceSchemaLocation="employee.xsd">
 
     <employee>
         <name>Carl Cracker</name>
@@ -17,5 +18,4 @@
         <salary>40000</salary>
         <hiredate year="1990" month="3" day="15"/>
     </employee>
-
 </staff>

@@ -5,10 +5,6 @@ import javax.xml.bind.annotation.XmlType;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-/**
- * @author nlelyak
- * @version 1.00 2014-01-28.
- */
 @XmlRootElement(name = "employee")
 @XmlType(propOrder = {"name", "salary", "hireDay"})
 public class Employee {

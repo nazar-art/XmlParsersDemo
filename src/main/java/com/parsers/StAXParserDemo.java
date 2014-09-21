@@ -11,10 +11,6 @@ import java.util.List;
 
 import static com.parsers.Files.EMPLOYEE_XML;
 
-/**
- * @author nlelyak
- * @version 1.00 2014-01-28.
- */
 public class StAXParserDemo {
     public static void main(String[] args) {
         try {
@@ -31,18 +27,13 @@ public class StAXParserDemo {
 
 class StaxXmlParser {
 
+    private XMLStreamReader reader;
+
     private List<Employee> employeeList;
     private Employee currentEmployee;
     private String tagContent;
-    private String attrContent;
-
-    private XMLStreamReader reader;
 
     public StaxXmlParser(String filename) {
-        employeeList = null;
-        currentEmployee = null;
-        tagContent = null;
-
         try {
             XMLInputFactory factory = XMLInputFactory.newFactory();
             reader = factory.createXMLStreamReader(new FileInputStream(new File(filename)));

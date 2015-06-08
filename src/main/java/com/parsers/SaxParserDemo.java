@@ -66,12 +66,12 @@ class SaxHandler extends DefaultHandler {
             this.employees.add(employee);
         }
         if ("hiredate".equals(qName)) {
-            int yearatt = Integer.parseInt(attributes.getValue("year"));
-            int monthatt = Integer.parseInt(attributes.getValue("month"));
-            int dayatt = Integer.parseInt(attributes.getValue("day"));
+            int yearAtt = Integer.parseInt(attributes.getValue("year"));
+            int monthAtt = Integer.parseInt(attributes.getValue("month"));
+            int dayAtt = Integer.parseInt(attributes.getValue("day"));
 
             if (employee != null) {
-                employee.setHireDay(yearatt, monthatt - 1, dayatt);
+                employee.setHireDay(yearAtt, monthAtt - 1, dayAtt);
             }
         }
     }
@@ -81,7 +81,7 @@ class SaxHandler extends DefaultHandler {
         this.elementStack.pop();
 
         if ("employee".equals(qName)) {
-            Object objects = this.objectStack.pop();
+            this.objectStack.pop();
         }
     }
 
@@ -93,7 +93,7 @@ class SaxHandler extends DefaultHandler {
         if ("name".equals(currentElement())) {
             employee = (Employee) this.objectStack.peek();
             employee.setName(value);
-        } else if ("salary".equals(currentElement()) && "employee".equals(currentParrentElement())) {
+        } else if ("salary".equals(currentElement()) && "employee".equals(currentParentElement())) {
             employee.setSalary(Double.parseDouble(value));
         }
     }
@@ -102,7 +102,7 @@ class SaxHandler extends DefaultHandler {
         return this.elementStack.peek();
     }
 
-    private String currentParrentElement() {
+    private String currentParentElement() {
         if (this.elementStack.size() < 2) return null;
         return this.elementStack.get(this.elementStack.size() - 2);
     }

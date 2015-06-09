@@ -1,9 +1,5 @@
 package com.concurrency;
 
-/**
- * @author nlelyak
- * @version 1.00 2014-01-31
- */
 class PingPong {
 
     private String state;

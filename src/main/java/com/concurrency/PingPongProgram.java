@@ -4,15 +4,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Phaser;
 
-/**
- * @author nlelyak
- * @version 1.00 2014-01-29.
- */
 public class PingPongProgram {
 
     static final int times = 5;
     static final Phaser p = new Phaser(1) {
-
         @Override
         protected boolean onAdvance(int phase, int registeredParties) {
             return phase >= times || registeredParties == 0;
@@ -36,11 +31,11 @@ public class PingPongProgram {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        System.out.println("Start!\n");
+        System.out.println("Start:\n");
 
         ExecutorService executor = Executors.newCachedThreadPool();
-        executor.execute(new PingPong("Ping!"));
-        executor.execute(new PingPong("Pong!"));
+        executor.execute(new PingPong("Ping"));
+        executor.execute(new PingPong("Pong"));
 
         while (!p.isTerminated()) {
         }

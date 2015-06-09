@@ -1,12 +1,18 @@
 package com.parsers;
 
+import com.xpath.EmployeeXpathParser;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.log4j.Logger;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
+import javax.xml.xpath.XPathExpressionException;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.parsers.FilesLocation.EMPLOYEE_XML;
@@ -33,6 +39,27 @@ public class MainParsersTestClass {
         main.testDomParser();  // test
         elapsedTime = System.currentTimeMillis() - startTime;
         LOGGER.info(String.format("Parsing time is: %d ms%n", elapsedTime));
+
+        startTime = System.currentTimeMillis();
+        main.testXpathParser();  // test
+        elapsedTime = System.currentTimeMillis() - startTime;
+        LOGGER.info(String.format("Parsing time is: %d ms%n", elapsedTime));
+    }
+
+    private void testXpathParser() {
+        LOGGER.info("Using Xpath Parser:\n-----------------");
+        try {
+            EmployeeXpathParser xpathParser = new EmployeeXpathParser();
+            ArrayList<Employee> employees = xpathParser.parse(FilesLocation.EMPLOYEE_XML.getFilename());
+            for (Employee employee : employees) {
+                System.out.println(employee);
+            }
+
+        } catch (ParserConfigurationException e) {
+            LOGGER.error(e);
+        } catch (SAXException | XPathExpressionException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
     void testSaxParser() {

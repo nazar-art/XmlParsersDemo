@@ -16,8 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-import static com.parsers.Files.EMPLOYEE_XSD;
-import static com.parsers.Files.EMPLOYEE_XML;
+import static com.parsers.FilesLocation.EMPLOYEE_XSD;
+import static com.parsers.FilesLocation.EMPLOYEE_XML;
 
 /**
  * @author nlelyak

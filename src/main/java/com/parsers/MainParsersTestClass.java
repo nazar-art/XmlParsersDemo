@@ -9,15 +9,15 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.List;
 
-import static com.parsers.Files.EMPLOYEE_XML;
+import static com.parsers.FilesLocation.EMPLOYEE_XML;
 
-public class MainTest {
+public class MainParsersTestClass {
 
-    private static final Logger LOGGER = Logger.getLogger(MainTest.class);
+    private static final Logger LOGGER = Logger.getLogger(MainParsersTestClass.class);
 
     public static void main(String[] args) {
         long startTime, elapsedTime;
-        MainTest main = new MainTest();
+        MainParsersTestClass main = new MainParsersTestClass();
 
         startTime = System.currentTimeMillis();
         main.testSaxParser();   // test
@@ -61,10 +61,10 @@ public class MainTest {
     void testStaxParser() {
         LOGGER.info("Using StAX Parser:\n------------------");
         try {
-            StaxXmlParser staxXmlParser = new StaxXmlParser(EMPLOYEE_XML.getFilename());
-            List<Employee> employees = staxXmlParser.parseEmployee();
+            StaxCursorXmlParser staxCursorXmlParser = new StaxCursorXmlParser(EMPLOYEE_XML.getFilename());
+            List<Employee> employees = staxCursorXmlParser.parseEmployee();
             for (Employee emp : employees) {
-                ToStringBuilder.reflectionToString(emp);
+                LOGGER.info(ToStringBuilder.reflectionToString(emp));
             }
         } catch (Throwable e) {
             e.printStackTrace();
@@ -77,7 +77,7 @@ public class MainTest {
 
         List<Employee> employees = domXmlParser.parseFromXmlToEmployee();
         for (Employee employee : employees) {
-            ToStringBuilder.reflectionToString(employee);
+            LOGGER.info(ToStringBuilder.reflectionToString(employee));
         }
     }
 }

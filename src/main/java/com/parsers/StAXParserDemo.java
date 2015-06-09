@@ -9,13 +9,13 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.parsers.Files.EMPLOYEE_XML;
+import static com.parsers.FilesLocation.EMPLOYEE_XML;
 
 public class StAXParserDemo {
     public static void main(String[] args) {
         try {
-            StaxXmlParser staxXmlParser = new StaxXmlParser(EMPLOYEE_XML.getFilename());
-            List<Employee> employees = staxXmlParser.parseEmployee();
+            StaxCursorXmlParser staxCursorXmlParser = new StaxCursorXmlParser(EMPLOYEE_XML.getFilename());
+            List<Employee> employees = staxCursorXmlParser.parseEmployee();
             for (Employee emp : employees) {
                 System.out.println(emp);
             }
@@ -25,7 +25,7 @@ public class StAXParserDemo {
     }
 }
 
-class StaxXmlParser {
+class StaxCursorXmlParser {
 
     private XMLStreamReader reader;
 
@@ -33,7 +33,7 @@ class StaxXmlParser {
     private Employee currentEmployee;
     private String tagContent;
 
-    public StaxXmlParser(String filename) {
+    public StaxCursorXmlParser(String filename) {
         try {
             XMLInputFactory factory = XMLInputFactory.newFactory();
             reader = factory.createXMLStreamReader(new FileInputStream(new File(filename)));

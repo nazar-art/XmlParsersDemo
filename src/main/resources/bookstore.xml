@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<bookstore>
+    <book>
+        <title lang="eng">Thinking in Java</title>
+        <price>29.99</price>
+    </book>
+
+    <book>
+        <title lang="eng">Effective Java</title>
+        <price>39.95</price>
+    </book>
+</bookstore>

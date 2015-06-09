@@ -18,7 +18,7 @@ public class JaxbDemo {
             long startTime = System.currentTimeMillis();
             // create jaxb and instantiate marshaller
             JAXBContext context = JAXBContext.newInstance(Staff.class.getPackage().getName());
-            FileInputStream in = new FileInputStream(new File(Files.EMPLOYEE_XML.getFilename()));
+            FileInputStream in = new FileInputStream(new File(FilesLocation.EMPLOYEE_XML.getFilename()));
 
             System.out.println("Output from employee XML file");
             Unmarshaller um = context.createUnmarshaller();

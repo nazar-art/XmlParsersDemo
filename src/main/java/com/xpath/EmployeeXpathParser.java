@@ -32,6 +32,7 @@ public class EmployeeXpathParser {
 
         ArrayList<Employee> employees = new ArrayList<>();
         int emplCount = Integer.parseInt(path.evaluate("count(/staff/employee)", document));
+
         for (int i = 1; i <= emplCount; i++) {
             String name = path.evaluate("/staff/employee[" + i + "]/name", document);
             double salary = Double.valueOf(path.evaluate("/staff/employee[" + i + "]/salary", document));
@@ -41,7 +42,6 @@ public class EmployeeXpathParser {
 
             employees.add(new Employee(name, salary, year, month, day));
         }
-
         return employees;
     }
 }

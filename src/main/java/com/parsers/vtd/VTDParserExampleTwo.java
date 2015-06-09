@@ -125,7 +125,6 @@ public class VTDParserExampleTwo {
                 printTag(vn, level);
 
                 parseAndPrintChildren(level);
-
             }
         } catch (XPathEvalException | NavException ex) {
             ex.printStackTrace();
